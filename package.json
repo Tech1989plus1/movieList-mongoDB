@@ -1,0 +1,34 @@
+{
+  "name": "movieList-mongoDB",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "react-dev": "webpack --watch -d", 
+    "server-dev": "nodemon ./sever/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tech1989plus1/movieList-mongoDB.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tech1989plus1/movieList-mongoDB/issues"
+  },
+  "homepage": "https://github.com/Tech1989plus1/movieList-mongoDB#readme",
+  "devDependencies": {
+    "@babel/preset-react": "^7.7.4",
+    "nodemon": "^2.0.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "@babel/core": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "express": "^4.17.1"
+  }
+}
