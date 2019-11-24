@@ -3,6 +3,7 @@ import Static from './static.jsx';
 import {ajax} from 'jquery';
 import MoviesList from './MoviesList.jsx';
 import Search from './Search.jsx';
+import Add from './Add.jsx';
 
 class App extends React.Component{
   constructor(props){
@@ -36,12 +37,12 @@ class App extends React.Component{
     })
   }
 
-  postMovies(movie = 'Mean Girls'){
+  postMovies(insert){
     ajax({
       url: '/movies',
       method: 'POST',
-      data: {title: movie},
-      success: () => console.log('Success posting movie'),
+      data: {title: insert},
+      success: () => this.getMovies(),
       error: () => console.log('Error: posting movie') 
     })
   }
@@ -53,6 +54,7 @@ class App extends React.Component{
   render(){
     return(<div>
       <Static/>
+      <Add cb={this.postMovies}/>
       <Search cb={this.searchMovies}/>
       <MoviesList movies={this.state.concat}/>
     </div>);
