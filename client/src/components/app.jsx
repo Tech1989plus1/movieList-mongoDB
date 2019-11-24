@@ -2,27 +2,34 @@ import React from 'react';
 import Static from './static.jsx';
 import {ajax} from 'jquery';
 import MoviesList from './MoviesList.jsx';
+import Search from './Search.jsx';
 
 class App extends React.Component{
   constructor(props){
     super(props);
 
-    this.state = {movies: []};
+    this.state = {movies: [], concat: []};
 
     this.getMovies = this.getMovies.bind(this);
     this.postMovies = this.postMovies.bind(this);
     this.searchMovies = this.searchMovies.bind(this);
   }
 
-  searchMovies(){
-
+  searchMovies(query){
+    let arr = [];
+    this.state.movies.map(({title}, key) => {
+      if(title.toLowerCase().includes(query.toLowerCase())){
+        arr.push({title: title});
+      }
+    });
+    this.setState({concat: arr});
   }
 
   getMovies(){
     ajax({
       url: '/movies',
       method: 'GET',
-      success: (data) => this.setState({movies: data}),
+      success: (data) => this.setState({movies: data, concat: data}),
       error: () => {
         console.log('Erros in app.jsx')
       }
@@ -46,7 +53,8 @@ class App extends React.Component{
   render(){
     return(<div>
       <Static/>
-      <MoviesList movies={this.state.movies}/>
+      <Search cb={this.searchMovies}/>
+      <MoviesList movies={this.state.concat}/>
     </div>);
   }
 }
