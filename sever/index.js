@@ -4,6 +4,7 @@ const app = express();
 const port = 3000;
 const db = require('../database/index.js');
 const bodyParser = require('body-parser');
+const MovieDB = require('../api/moviedb.js');
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
@@ -19,13 +20,14 @@ app.get('/movies', (req, res) => {
 });
 
 app.post('/movies', (req, res) => {
-  db.movieDB.save(req.body, (err) => {
-    if(err){
-      res.status(400).send();
-    } else {
-      res.status(200).send();
-    }
-  });
+  MovieDB.getMovie(req.body);
+  // db.movieDB.save(req.body, (err) => {
+  //   if(err){
+  //     res.status(400).send();
+  //   } else {
+  //     res.status(200).send();
+  //   }
+  // });
 });
 
 
